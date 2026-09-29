@@ -1,0 +1,55 @@
+### Configuración de variables
+@host = http://localhost:3000
+@api = {{host}}/api/tareas
+
+### 1. Obtener todas las tareas (Formato JSON por defecto)
+GET {{api}}
+
+### 2. Obtener todas las tareas en Formato Texto Plano
+GET {{api}}?formato=text
+
+### 3. Obtener tarea por ID existente
+GET {{api}}/1
+
+### 4. Obtener tarea por ID inexistente (Devuelve 404)
+GET {{api}}/999
+
+### 5. Obtener tareas por Título (Búsqueda parcial)
+GET {{api}}/titulo/express
+
+### 6. Crear una nueva tarea
+POST {{api}}
+Content-Type: application/json
+
+{
+  "titulo": "Aprender REST Client en VS Code",
+  "completada": false
+}
+
+### 7. Intentar crear tarea sin título (Devuelve 400 Bad Request)
+POST {{api}}
+Content-Type: application/json
+
+{
+  "completada": false
+}
+
+### 8. Actualizar tarea completamente (PUT - Sobrescribe todos los campos)
+PUT {{api}}/1
+Content-Type: application/json
+
+{
+  "titulo": "Dominar Express y Node.js",
+  "completada": true
+}
+
+### 9. Actualizar tarea parcialmente (PATCH - Modifica solo los campos enviados)
+PATCH {{api}}/2
+Content-Type: application/json
+
+{
+  "completada": true
+}
+
+### 10. Eliminar una tarea por ID
+DELETE {{api}}/2
